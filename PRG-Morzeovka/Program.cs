@@ -49,5 +49,9 @@ string txt = "Šílená čivava";
 Console.WriteLine(txt.ToUpper());*/
 
 Znaky slovo = new Znaky();
-string vysledek1 = slovo.PrekladDoMorzeovky("AHOJ");
-Console.WriteLine(vysledek1);
+string neco = slovo.PrekladDoMorzeovky("AHOJ");
+Console.WriteLine(neco);
+
+Znaky mor = new Znaky();
+string veci = mor.PrekladDoLatinky(".-/..../---/.---/");
+Console.WriteLine(mor);

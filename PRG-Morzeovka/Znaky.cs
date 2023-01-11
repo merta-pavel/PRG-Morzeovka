@@ -10,51 +10,49 @@ namespace PRG_Morzeovka
 {
     internal class Znaky
     {
-        Dictionary<string, string> překlad = new Dictionary<string, string>();
-        public Znaky()
+        private static Dictionary<String, String> překlad = new Dictionary<String, String>()
         {
-            překlad.Add("A", ".-");
-            překlad.Add("B", "-...");
-            překlad.Add("C", "-.-.");
-            překlad.Add("D", "-..");
-            překlad.Add("E", ".");
-            překlad.Add("F", "..-.");
-            překlad.Add("G", "--.");
-            překlad.Add("H", "....");
-            překlad.Add("CH", "----");
-            překlad.Add("I", "..");
-            překlad.Add("J", ".---");
-            překlad.Add("K", "-.-");
-            překlad.Add("L", ".-..");
-            překlad.Add("M", "--");
-            překlad.Add("N", "-.");
-            překlad.Add("O", "---");
-            překlad.Add("P", ".--.");
-            překlad.Add("Q", "--.-");
-            překlad.Add("R", ".-.");
-            překlad.Add("S", "...");
-            překlad.Add("T", "-");
-            překlad.Add("U", "..-");
-            překlad.Add("V", "...-");
-            překlad.Add("W", ".--");
-            překlad.Add("X", "-..-");
-            překlad.Add("Y", "-.--");
-            překlad.Add("Z", "--..");
-            překlad.Add("1", ".----");
-            překlad.Add("2", "..---");
-            překlad.Add("3", "...--");
-            překlad.Add("4", "....-");
-            překlad.Add("5", ".....");
-            překlad.Add("6", "-....");
-            překlad.Add("7", "--...");
-            překlad.Add("8", "---..");
-            překlad.Add("9", "----.");
-            překlad.Add("0", "-----");
-        }
+            {"A" , ".-"},
+            {"B" , "-..."},
+            {"C" , "-.-."},
+            {"D" , "-.."},
+            {"E" , "."},
+            {"F" , "..-."},
+            {"G" , "--."},
+            {"H" , "...."},
+            {"I" , ".."},
+            {"J" , ".---"},
+            {"K" , "-.-"},
+            {"L" , ".-.."},
+            {"M" , "--"},
+            {"N" , "-."},
+            {"O" , "---"},
+            {"P" , ".--."},
+            {"Q" , "--.-"},
+            {"R" , ".-."},
+            {"S" , "..."},
+            {"T" , "-"},
+            {"U" , "..-"},
+            {"V" , "...-"},
+            {"W" , ".--"},
+            {"X" , "-..-"},
+            {"Y" , "-.--"},
+            {"Z" , "--.."},
+            {"0" , "-----"},
+            {"1" , ".----"},
+            {"2" , "..---"},
+            {"3" , "...--"},
+            {"4" , "....-"},
+            {"5" , "....."},
+            {"6" , "-...."},
+            {"7" , "--..."},
+            {"8" , "---.."},
+            {"9" , "----."},
+        };
+        private static Dictionary<String, String> opačně = new Dictionary<String, String>();
 
         public string PrekladDoMorzeovky(string txt)
         {
-            string vysledek = "";
             string normalizedText = txt.Normalize(NormalizationForm.FormD);
             StringBuilder sb = new StringBuilder();
             foreach (var x in normalizedText)
@@ -64,17 +62,33 @@ namespace PRG_Morzeovka
                     sb.Append(x);
                 }
             }
+            string vysledek = "";
             string neco = sb.ToString();
             char[] result2 = neco.ToCharArray();
+            List<String> konec = new List<string>();
             foreach (char c in result2)
             {
                 string morzeovka = c.ToString();
-                vysledek += překlad[morzeovka];
-                morzeovka = překlad[morzeovka];
+                konec.Add(překlad[c.ToString()]);
             }
-            string[] symbols = new string[] { };
-            string res = string.Join("/", symbols);
+            vysledek = string.Join("/", konec);
+            vysledek = vysledek.Replace("/-.-./..../", "/----/");
             return vysledek;
+        }
+        public string PrekladDoLatinky(string txt)
+        {
+            string[] znaky = ToSymbols(txt);
+            string vysledek = "";
+            foreach (string a in znaky)
+            {
+                vysledek += opačně[a];
+            }
+
+            return vysledek;
+        }
+        private static string[] ToSymbols(string txt)
+        {
+            return txt.Split("/");
         }
     }
 }
