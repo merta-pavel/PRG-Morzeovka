@@ -5,6 +5,8 @@ char[] source1 = new char[] { 'A', 'B', 'C' };
 string result1 = new string(source);
 
 // rozdělení řetězce do znaků*/
+using PRG_Morzeovka;
+
 string source2 = "Textový řetězec";
 char[] result2 = source2.ToCharArray();
 /*​
@@ -17,7 +19,7 @@ var srcBytes = srcEnc.GetBytes(txt);
 var dstBytes = Encoding.Convert(srcEnc, dstEnc, srcBytes);
 string des = dstEnc.GetString(dstBytes);
 Console.WriteLine(des);
-​
+
 // odstranění diakritiky
 string txt = "Šílená čivava";
 string normalizedText = txt.Normalize(NormalizationForm.FormD);
@@ -30,7 +32,7 @@ foreach (var x in normalizedText)
     }
 }
 Console.WriteLine(sb.ToString().Normalize(NormalizationForm.FormC));
-​
+/
 // rozdělení řetězce na podřetězce podle určitého znaku
 string[] symbols = txt.Split('/');
 ​
@@ -45,3 +47,7 @@ Console.WriteLine(txt.ToLower());
 // převod znaků na velké znaky
 string txt = "Šílená čivava";
 Console.WriteLine(txt.ToUpper());*/
+
+Znaky slovo = new Znaky();
+string vysledek1 = slovo.PrekladDoMorzeovky("AHOJ");
+Console.WriteLine(vysledek1);

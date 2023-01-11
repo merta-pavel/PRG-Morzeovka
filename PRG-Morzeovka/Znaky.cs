@@ -4,13 +4,14 @@ using System.Diagnostics.Metrics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace PRG_Morzeovka
 {
     internal class Znaky
     {
         Dictionary<string, string> překlad = new Dictionary<string, string>();
-        private Znaky() 
+        public Znaky()
         {
             překlad.Add("A", ".-");
             překlad.Add("B", "-...");
@@ -22,6 +23,7 @@ namespace PRG_Morzeovka
             překlad.Add("H", "....");
             překlad.Add("CH", "----");
             překlad.Add("I", "..");
+            překlad.Add("J", ".---");
             překlad.Add("K", "-.-");
             překlad.Add("L", ".-..");
             překlad.Add("M", "--");
@@ -50,16 +52,29 @@ namespace PRG_Morzeovka
             překlad.Add("0", "-----");
         }
 
-        public string PrekladDoMorzeovky(string Latinka)
+        public string PrekladDoMorzeovky(string txt)
         {
-            string source2 = "Textový řetězec";
-            char[] result2 = source2.ToCharArray();
+            string vysledek = "";
+            string normalizedText = txt.Normalize(NormalizationForm.FormD);
+            StringBuilder sb = new StringBuilder();
+            foreach (var x in normalizedText)
+            {
+                if (System.Globalization.CharUnicodeInfo.GetUnicodeCategory(x) != System.Globalization.UnicodeCategory.NonSpacingMark)
+                {
+                    sb.Append(x);
+                }
+            }
+            string neco = sb.ToString();
+            char[] result2 = neco.ToCharArray();
             foreach (char c in result2)
             {
                 string morzeovka = c.ToString();
-                Console.WriteLine(c.Key + " " + c.Value.Name);
+                vysledek += překlad[morzeovka];
+                morzeovka = překlad[morzeovka];
             }
-            
+            string[] symbols = new string[] { };
+            string res = string.Join("/", symbols);
+            return vysledek;
         }
     }
 }
