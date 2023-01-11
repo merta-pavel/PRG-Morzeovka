@@ -53,5 +53,5 @@ string neco = slovo.PrekladDoMorzeovky("AHOJ");
 Console.WriteLine(neco);
 
 Znaky mor = new Znaky();
-string veci = mor.PrekladDoLatinky(".-/..../---/.---/");
+string veci = mor.PrekladDoLatinky(".-/..../---/.---");
 Console.WriteLine(mor);

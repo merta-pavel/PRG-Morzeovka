@@ -90,5 +90,25 @@ namespace PRG_Morzeovka
         {
             return txt.Split("/");
         }
+        private static char[] ToChars(string txt)
+        {
+            return txt.ToCharArray();
+        }
+        private static string Normalizuj(string txt)
+        {
+            txt = txt.ToUpper();
+            string normalizedText = txt.Normalize(NormalizationForm.FormD);
+            StringBuilder sb = new StringBuilder();
+            foreach (var x in normalizedText)
+            {
+                if (System.Globalization.CharUnicodeInfo.GetUnicodeCategory(x) != System.Globalization.UnicodeCategory.NonSpacingMark)
+                {
+                    sb.Append(x);
+                }
+            }
+            txt = sb.ToString().Normalize(NormalizationForm.FormC);
+            return txt;
+        }
+
     }
 }
