@@ -11,44 +11,44 @@ namespace Morzeovka
     internal class Znaky
     {
         private static Dictionary<String, String> překlad = new Dictionary<String, String>()
-        {
-            {"A" , ".-"},
-            {"B" , "-..."},
-            {"C" , "-.-."},
-            {"D" , "-.."},
-            {"E" , "."},
-            {"F" , "..-."},
-            {"G" , "--."},
-            {"H" , "...."},
-            {"I" , ".."},
-            {"J" , ".---"},
-            {"K" , "-.-"},
-            {"L" , ".-.."},
-            {"M" , "--"},
-            {"N" , "-."},
-            {"O" , "---"},
-            {"P" , ".--."},
-            {"Q" , "--.-"},
-            {"R" , ".-."},
-            {"S" , "..."},
-            {"T" , "-"},
-            {"U" , "..-"},
-            {"V" , "...-"},
-            {"W" , ".--"},
-            {"X" , "-..-"},
-            {"Y" , "-.--"},
-            {"Z" , "--.."},
-            {"0" , "-----"},
-            {"1" , ".----"},
-            {"2" , "..---"},
-            {"3" , "...--"},
-            {"4" , "....-"},
-            {"5" , "....."},
-            {"6" , "-...."},
-            {"7" , "--..."},
-            {"8" , "---.."},
-            {"9" , "----."},
-        };
+            {
+                {"A" , ".-"},
+                {"B" , "-..."},
+                {"C" , "-.-."},
+                {"D" , "-.."},
+                {"E" , "."},
+                {"F" , "..-."},
+                {"G" , "--."},
+                {"H" , "...."},
+                {"I" , ".."},
+                {"J" , ".---"},
+                {"K" , "-.-"},
+                {"L" , ".-.."},
+                {"M" , "--"},
+                {"N" , "-."},
+                {"O" , "---"},
+                {"P" , ".--."},
+                {"Q" , "--.-"},
+                {"R" , ".-."},
+                {"S" , "..."},
+                {"T" , "-"},
+                {"U" , "..-"},
+                {"V" , "...-"},
+                {"W" , ".--"},
+                {"X" , "-..-"},
+                {"Y" , "-.--"},
+                {"Z" , "--.."},
+                {"0" , "-----"},
+                {"1" , ".----"},
+                {"2" , "..---"},
+                {"3" , "...--"},
+                {"4" , "....-"},
+                {"5" , "....."},
+                {"6" , "-...."},
+                {"7" , "--..."},
+                {"8" , "---.."},
+                {"9" , "----."},
+            };
         private static Dictionary<String, String> opačně = new Dictionary<String, String>();
 
         public static string PrekladDoMorzeovky(string txt)
@@ -84,13 +84,7 @@ namespace Morzeovka
         }
         private static char[] ToChars(string charA)
         {
-
             return charA.ToCharArray();
-
-        }
-        private static string[] ToSymbols(string Symbols)
-        {
-            return Symbols.Split("/");
         }
         private static string Normalize(string Normalize)
         {
@@ -106,6 +100,10 @@ namespace Morzeovka
             }
             Normalize = sb.ToString().Normalize(NormalizationForm.FormC);
             return Normalize;
+        }
+        private static string[] ToSymbols(string Symbols)
+        {
+            return Symbols.Split("/");
         }
     }
 }
