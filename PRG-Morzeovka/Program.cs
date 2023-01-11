@@ -3,11 +3,11 @@ using System.Text;
 
 char[] source1 = new char[] { 'A', 'B', 'C' };
 string result1 = new string(source);
-​
-// rozdělení řetězce do znaků
+
+// rozdělení řetězce do znaků*/
 string source2 = "Textový řetězec";
 char[] result2 = source2.ToCharArray();
-​
+/*​
 // překódování z UTF-8 do ASCII (nefunguje tak, jak bychom potřebovali)
 Encoding srcEnc = Encoding.UTF8;
 Encoding dstEnc = Encoding.ASCII;

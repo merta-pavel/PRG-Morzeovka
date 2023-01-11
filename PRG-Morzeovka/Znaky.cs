@@ -10,10 +10,8 @@ namespace PRG_Morzeovka
     internal class Znaky
     {
         Dictionary<string, string> překlad = new Dictionary<string, string>();
-        private Znaky(string latinka, string morzeovka) 
+        private Znaky() 
         {
-            Latinka = latinka;
-            Morzeovka = morzeovka;
             překlad.Add("A", ".-");
             překlad.Add("B", "-...");
             překlad.Add("C", "-.-.");
@@ -51,9 +49,17 @@ namespace PRG_Morzeovka
             překlad.Add("9", "----.");
             překlad.Add("0", "-----");
         }
-        public string  Latinka { get; set; }
-        public string Morzeovka { get; set; }
 
-        public
+        public string PrekladDoMorzeovky(string Latinka)
+        {
+            string source2 = "Textový řetězec";
+            char[] result2 = source2.ToCharArray();
+            foreach (char c in result2)
+            {
+                string morzeovka = c.ToString();
+                Console.WriteLine(c.Key + " " + c.Value.Name);
+            }
+            
+        }
     }
 }
