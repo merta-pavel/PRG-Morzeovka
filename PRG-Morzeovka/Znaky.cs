@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using static System.Net.Mime.MediaTypeNames;
 
-namespace PRG_Morzeovka
+namespace Morzeovka
 {
     internal class Znaky
     {
@@ -51,53 +51,51 @@ namespace PRG_Morzeovka
         };
         private static Dictionary<String, String> opačně = new Dictionary<String, String>();
 
-        public string PrekladDoMorzeovky(string txt)
+        public static string PrekladDoMorzeovky(string txt)
         {
-            string normalizedText = txt.Normalize(NormalizationForm.FormD);
-            StringBuilder sb = new StringBuilder();
-            foreach (var x in normalizedText)
+            foreach (var x in překlad)
             {
-                if (System.Globalization.CharUnicodeInfo.GetUnicodeCategory(x) != System.Globalization.UnicodeCategory.NonSpacingMark)
-                {
-                    sb.Append(x);
-                }
+                opačně.Add(x.Value, x.Key);
             }
-            string vysledek = "";
-            string neco = sb.ToString();
-            char[] result2 = neco.ToCharArray();
-            List<String> konec = new List<string>();
-            foreach (char c in result2)
+            txt = Normalize(txt);
+            char[] znaky = ToChars(txt);
+            string konec = "";
+            List<String> vysledek = new List<string>();
+            foreach (char c in znaky)
             {
-                string morzeovka = c.ToString();
-                konec.Add(překlad[c.ToString()]);
+                vysledek.Add(překlad[c.ToString()]);
             }
-            vysledek = string.Join("/", konec);
-            vysledek = vysledek.Replace("/-.-./..../", "/----/");
-            return vysledek;
+            konec = string.Join("/", vysledek);
+            konec = konec.Replace("/-.-./..../", "/----/");
+            return konec;
         }
-        public string PrekladDoLatinky(string txt)
+        public static string PrekladDoLatinky(string latinka)
         {
-            string[] znaky = ToSymbols(txt);
+            latinka = latinka.Trim();
+            string[] znaky = ToSymbols(latinka);
+
             string vysledek = "";
+
             foreach (string a in znaky)
             {
                 vysledek += opačně[a];
             }
-
             return vysledek;
         }
-        private static string[] ToSymbols(string txt)
+        private static char[] ToChars(string charA)
         {
-            return txt.Split("/");
+
+            return charA.ToCharArray();
+
         }
-        private static char[] ToChars(string txt)
+        private static string[] ToSymbols(string Symbols)
         {
-            return txt.ToCharArray();
+            return Symbols.Split("/");
         }
-        private static string Normalizuj(string txt)
+        private static string Normalize(string Normalize)
         {
-            txt = txt.ToUpper();
-            string normalizedText = txt.Normalize(NormalizationForm.FormD);
+            Normalize = Normalize.ToUpper();
+            string normalizedText = Normalize.Normalize(NormalizationForm.FormD);
             StringBuilder sb = new StringBuilder();
             foreach (var x in normalizedText)
             {
@@ -106,9 +104,8 @@ namespace PRG_Morzeovka
                     sb.Append(x);
                 }
             }
-            txt = sb.ToString().Normalize(NormalizationForm.FormC);
-            return txt;
+            Normalize = sb.ToString().Normalize(NormalizationForm.FormC);
+            return Normalize;
         }
-
     }
 }
