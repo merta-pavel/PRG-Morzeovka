@@ -46,5 +46,7 @@ string neco = "Šílená čivava";
 Console.WriteLine(Normalize.ToUpper());
 */
 
-/*Znaky.PrekladDoMorzeovky(".-");
-Znaky.PrekladDoLatinky("ahoj");*/
+Console.WriteLine(Znaky.PrekladDoLatinky(".-"));
+Console.WriteLine(Znaky.PrekladDoMorzeovky("CH"));
+
+

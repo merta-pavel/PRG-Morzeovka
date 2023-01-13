@@ -49,14 +49,10 @@ namespace Morzeovka
                 {"8" , "---.."},
                 {"9" , "----."},
             };
-        private static Dictionary<String, String> opačně = new Dictionary<String, String>();
 
         public static string PrekladDoMorzeovky(string txt)
         {
-            foreach (var x in překlad)
-            {
-                opačně.Add(x.Value, x.Key);
-            }
+
             txt = Normalize(txt);
             char[] znaky = ToChars(txt);
             string konec = "";
@@ -71,16 +67,17 @@ namespace Morzeovka
         }
         public static string PrekladDoLatinky(string latinka)
         {
+            var retezec = new StringBuilder();
+            var opacne = překlad.ToDictionary(x => x.Value, x => x.Key);
             latinka = latinka.Trim();
-            string[] znaky = ToSymbols(latinka);
+            var znaky = latinka.Split("/");
 
-            string vysledek = "";
 
             foreach (string a in znaky)
             {
-                vysledek += opačně[a];
+                retezec.Append(opacne[a]);
             }
-            return vysledek;
+            return retezec.ToString();
         }
         private static char[] ToChars(string charA)
         {
