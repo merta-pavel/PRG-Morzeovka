@@ -47,6 +47,6 @@ Console.WriteLine(Normalize.ToUpper());
 */
 
 Console.WriteLine(Znaky.PrekladDoLatinky(".-"));
-Console.WriteLine(Znaky.PrekladDoMorzeovky("CH"));
+Console.WriteLine(Znaky.PrekladDoMorzeovky("MŇAMKA"));
 
 
